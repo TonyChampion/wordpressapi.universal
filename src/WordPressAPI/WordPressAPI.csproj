@@ -59,10 +59,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\xmlrpc.net\XmlRpc\XmlRpcPortable\XmlRpcPortable.csproj">
-      <Project>{9ffd648e-f313-40c3-80b0-259febe5ee4e}</Project>
-      <Name>XmlRpcPortable</Name>
-    </ProjectReference>
+    <Reference Include="XmlRpcPortable">
+      <HintPath>..\..\..\App6\packages\xmlrpc.universal.0.8.2\lib\portable-win81+wpa81\XmlRpcPortable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
