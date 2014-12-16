@@ -8,6 +8,7 @@ using XmlRpcPortable.Converter;
 namespace WordPressAPI.Models
 {
     [XmlRpcConverterReplace("-", "_")]
+    [XmlRpcConverterReplace("private", "private_post")]
     public enum WordPressPostStatus
     {
         publish,
@@ -15,7 +16,7 @@ namespace WordPressAPI.Models
         draft,
         auto_draft,
         future,
-        @private,
+        private_post,
         inherit,
         trash
     }

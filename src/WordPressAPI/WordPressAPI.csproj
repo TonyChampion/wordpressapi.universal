@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="XmlRpcPortable">
-      <HintPath>..\..\..\App6\packages\xmlrpc.universal.0.8.2\lib\portable-win81+wpa81\XmlRpcPortable.dll</HintPath>
+      <HintPath>..\packages\xmlrpc.universal.0.8.4\lib\portable-win81+wpa81\XmlRpcPortable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
