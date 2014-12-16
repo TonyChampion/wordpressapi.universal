@@ -30,7 +30,7 @@ namespace WordPressAPI
                 baseUri += "/";
             }
 
-            baseUri += "xmkrpc.php";
+            baseUri += "xmlrpc.php";
 
             _uri = new Uri(baseUri);
             _client = new XmlRpcClient(_uri);
