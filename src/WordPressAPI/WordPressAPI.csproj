@@ -38,12 +38,17 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\WordPressAuthor.cs" />
+    <Compile Include="Models\WordPressBlog.cs" />
     <Compile Include="Models\WordPressComment.cs" />
+    <Compile Include="Models\WordPressOption.cs" />
     <Compile Include="Models\WordPressCustomField.cs" />
     <Compile Include="Models\WordPressEnclosure.cs" />
     <Compile Include="Models\WordPressMediaItem.cs" />
     <Compile Include="Models\WordPressMediaItemMetadata.cs" />
+    <Compile Include="Models\WordPressOptions.cs" />
     <Compile Include="Models\WordPressOrder.cs" />
+    <Compile Include="Models\WordPressUserFilter.cs" />
     <Compile Include="Models\WordPressPostFilter.cs" />
     <Compile Include="Models\WordPressTermOrderBy.cs" />
     <Compile Include="Models\WordPressPostOrderBy.cs" />
@@ -55,12 +60,14 @@
     <Compile Include="Models\WordPressTaxonomy.cs" />
     <Compile Include="Models\WordPressTerm.cs" />
     <Compile Include="Models\WordPressTermFilter.cs" />
+    <Compile Include="Models\WordPressUser.cs" />
+    <Compile Include="Models\WordPressUsersWhoType.cs" />
     <Compile Include="WordPressClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="XmlRpcPortable">
-      <HintPath>..\packages\xmlrpc.universal.0.8.4\lib\portable-win81+wpa81\XmlRpcPortable.dll</HintPath>
+      <HintPath>..\..\..\App6\packages\xmlrpc.universal.0.8.6\lib\portable-win81+wpa81\XmlRpcPortable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

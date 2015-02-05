@@ -395,5 +395,254 @@ namespace WordPressAPI
 
         #endregion
 
+        #region Users
+
+        #region GetUsersBlogs
+        public async Task<IEnumerable<WordPressBlog>> GetUsersBlogsAsync()
+        {
+            return await GetUsersBlogsAsync(_userName, _password);
+        }
+
+        public async Task<IEnumerable<WordPressBlog>> GetUsersBlogsAsync(string userName, string password)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+
+            try
+            {
+                var results = await _client.CallRpc("wp.getUsersBlogs", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcArray)
+                    {
+                        return (IEnumerable<WordPressBlog>)XmlRpcConverter.MapArrayTo(results.Value as XmlRpcArray, typeof(WordPressBlog));
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #region GetUser
+        public async Task<WordPressUser> GetUserAsync(int userId)
+        {
+            return await GetUserAsync(userId, _blogId);
+        }
+
+        public async Task<WordPressUser> GetUserAsync(int userId, int blogId)
+        {
+            return await GetUserAsync(userId, blogId, _userName, _password);
+        }
+
+        public async Task<WordPressUser> GetUserAsync(int userId, int blogId, string userName, string password)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcInt(blogId));
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+            parms.Add(new XmlRpcInt(userId));
+
+            try
+            {
+                var results = await _client.CallRpc("wp.getUser", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcStruct)
+                    {
+                        return (WordPressUser)XmlRpcConverter.MapTo<WordPressUser>(results.Value);
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #region GetUsers
+        public async Task<IEnumerable<WordPressUser>> GetUsersAsync(WordPressUserFilter filter = null)
+        {
+            return await GetUsersAsync(_blogId, filter);
+        }
+
+        public async Task<IEnumerable<WordPressUser>> GetUsersAsync(int blogId, WordPressUserFilter filter = null)
+        {
+            return await GetUsersAsync(blogId, _userName, _password, filter);
+        }
+
+        public async Task<IEnumerable<WordPressUser>> GetUsersAsync(int blogId, string userName, string password, WordPressUserFilter filter = null)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcInt(blogId));
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+
+            if (filter != null)
+            {
+                parms.Add(XmlRpcConverter.MapFrom(filter));
+            }
+            try
+            {
+                var results = await _client.CallRpc("wp.getUsers", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcArray)
+                    {
+                        return (IEnumerable<WordPressUser>)XmlRpcConverter.MapArrayTo(results.Value as XmlRpcArray, typeof(WordPressUser));
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #region GetProfile
+        public async Task<WordPressUser> GetProfileAsync()
+        {
+            return await GetProfileAsync(_blogId);
+        }
+
+        public async Task<WordPressUser> GetProfileAsync(int blogId)
+        {
+            return await GetProfileAsync(blogId, _userName, _password);
+        }
+
+        public async Task<WordPressUser> GetProfileAsync(int blogId, string userName, string password)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcInt(blogId));
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+
+            try
+            {
+                var results = await _client.CallRpc("wp.getProfile", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcStruct)
+                    {
+                        return (WordPressUser)XmlRpcConverter.MapTo<WordPressUser>(results.Value);
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #region GetAuthors
+        public async Task<IEnumerable<WordPressAuthor>> GetAuthorsAsync()
+        {
+            return await GetAuthorsAsync(_blogId);
+        }
+
+        public async Task<IEnumerable<WordPressAuthor>> GetAuthorsAsync(int blogId)
+        {
+            return await GetAuthorsAsync(blogId, _userName, _password);
+        }
+
+        public async Task<IEnumerable<WordPressAuthor>> GetAuthorsAsync(int blogId, string userName, string password)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcInt(blogId));
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+
+
+            try
+            {
+                var results = await _client.CallRpc("wp.getAuthors", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcArray)
+                    {
+                        return (IEnumerable<WordPressAuthor>)XmlRpcConverter.MapArrayTo(results.Value as XmlRpcArray, typeof(WordPressAuthor));
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #endregion
+
+        #region Options
+
+        #region GetOptions
+        public async Task<WordPressOptions> GetOptionsAsync()
+        {
+            return await GetOptionsAsync(_blogId);
+        }
+
+        public async Task<WordPressOptions> GetOptionsAsync(int blogId)
+        {
+            return await GetOptionsAsync(blogId, _userName, _password);
+        }
+
+        public async Task<WordPressOptions> GetOptionsAsync(int blogId, string userName, string password)
+        {
+            var parms = new List<XmlRpcValue>();
+
+            parms.Add(new XmlRpcInt(blogId));
+            parms.Add(new XmlRpcString(userName));
+            parms.Add(new XmlRpcString(password));
+
+
+            try
+            {
+                var results = await _client.CallRpc("wp.getOptions", parms);
+
+                if (results != null)
+                {
+                    if (results.Value is XmlRpcStruct)
+                    {
+                        return (WordPressOptions)XmlRpcConverter.MapTo<WordPressOptions>(results.Value);
+                    }
+                }
+            }
+            catch (XmlRpcException ex)
+            {
+
+            }
+            return null;
+
+        }
+        #endregion
+
+        #endregion
+
     }
 }
